@@ -37,6 +37,9 @@ We are developing:
 
 ### Coding and testing nvironment
 * Linux virtual machine, login using SSH (`ssh [your CERN login]@tedxapp` on Linux or Putty on Windows)
+* Firewall open for specific port:
+  `sudo firewall-cmd --zone=public --permanent --add-port=8443/tcp`
+  `sudo systemctl restart firewalld`
 
 ### NLTK
 * http://www.nltk.org/install.html
