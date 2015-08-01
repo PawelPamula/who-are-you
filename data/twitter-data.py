@@ -1,7 +1,8 @@
 import tweepy
+import time
 
-consumer_key = "NCrukgPm4iLNljTvQcCI2MQt9"
-consumer_secret = "OkMA7kldr9Te3KOoLZ8vDZLWjUqSUMaOCpgjvWo7JoomeeWbJw"
+consumer_key = "bBuhDHozTBgDfl51Zo28mSsdV"
+consumer_secret = "Pk1zZg5XT3MqnNHUecuQZffBgfBuRnqeXbEAOrMY3TCyH7V9m9"
 access_token = "3398529563-5Si4sjrY7ADW6KYxQEvjWy7baWM5iuGNAlJEY2F"
 access_token_secret = "crdN41t7KSr4I9nZyGjT7mrO2bAzDPc8ixIw8XDxYK01c"
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -17,23 +18,30 @@ class TwitterUser(object):
 	work-around to prevent infinite recursion when the friends_list methos is called.
 	"""
 	def __init__(self, username, count, is_follower=False):
-		self.rawUser = api.get_user(username)
-		self.rawTimeline = [Tweet(tweet) for tweet in api.user_timeline(username, count=count)]
+		self.raw_user = api.get_user(username)
+		self.tweets = [Tweet(tweet) for tweet in api.user_timeline(username, count=count)]
 		self.count = count
 
-		self.description = self.rawUser.description
-		self.profile_image_url = self.rawUser.profile_image_url
-		self.location = self.rawUser.location
-		self.name = self.rawUser.name
-		self.id = self.rawUser.id
-		self.lang = self.rawUser.lang
-		self.url = self.rawUser.url
+		self.description = self.raw_user.description
+		self.profile_image_url = self.raw_user.profile_image_url
+		self.location = self.raw_user.location
+		self.name = self.raw_user.name
+		self.id = self.raw_user.id
+		self.lang = self.raw_user.lang
+		self.url = self.raw_user.url
 		self.friends_ids = api.friends_ids(username)
-		self.friends_list = (self._get_friends(self.friends_ids)
-							 if not is_follower else None)
-
+		# self.friends_list = (self._get_friends(self.friends_ids)
+		# 					 if not is_follower else None)
+		
 	def _get_friends(self, friends_ids, count=1):
 		return [TwitterUser(friend_id, count, True) for friend_id in friends_ids]
+
+	def dump_tweets_to_file(self):
+		with open('tmp.txt', 'w') as f:
+			for tweet in self.tweets:
+				f.write(tweet.text.encode('utf-8').strip())
+				f.write('\n')
+
 
 class Tweet(object):
 	"""This class contains the attributes for a tweet object.
