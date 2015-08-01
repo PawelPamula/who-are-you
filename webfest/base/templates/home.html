@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block assets_extra %}
+    {% assets filters="uglifyjs", output="home.js",
+        "js/home.js"
+    %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+{% block before_content %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block after_content %}
+    {% include 'footer.html' %}
+{% endblock %}
