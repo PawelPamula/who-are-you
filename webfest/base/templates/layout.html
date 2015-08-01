@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>{{ title | default('Flask-IIIF Demo') }}</title>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+    {% assets filters="uglifyjs", output="base.js",
+        "vendors/jquery/dist/jquery.js",
+        "vendors/bootstrap/dist/js/bootstrap.js"
+    %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    {% assets filters="less,cleancss", output="base.css",
+        "less/base.less"
+    %}
+        <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css">
+    {% endassets %}
+    {% block assets_extra %}{% endblock %}
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    {% include 'flash.html' %}
+    {% block before_content %}{% endblock %}
+    {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          {% block content_boy %} {% endblock %}
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    {% block after_content %}{% endblock %}
+  </body>
+</html>
