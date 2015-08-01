@@ -23,11 +23,11 @@ class TwitterUser(object):
 		self.lang = self.rawUser.lang
 		self.url = self.rawUser.url
 		self.friends_ids = api.friends_ids(username)
-		# self.friends_list = (self._get_friends(self.friends_ids)
-		#					 if not is_follower else None)
+		self.friends_list = (self._get_friends(self.friends_ids)
+							 if not is_follower else None)
 
-	def _get_friends(self, friends_ids, count=10):
-		return [TwitterUser(friend_id, , True) for friend_id in friends_ids]
+	def _get_friends(self, friends_ids, count=1):
+		return [TwitterUser(friend_id, count, True) for friend_id in friends_ids]
 
 
 class Tweet(object):
