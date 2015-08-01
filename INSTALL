@@ -5,3 +5,8 @@ $ pip install -r requirements.txt
 $ bower install
 $ python manage.py collect
 $ honcho start -f Procfile.dev
+
+## ubuntu users probably need to run:
+$ sudo apt-get install libreadline6 libreadline6-dev
+$ sudo apt-get install libncurses5-dev
+$ sudo npm install -g clean-css cssmin uglifyjs less
