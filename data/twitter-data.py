@@ -10,6 +10,12 @@ api = tweepy.API(auth)
 
 
 class TwitterUser(object):
+	"""
+	This class takes as an input the username of the Twitter user,
+	the number of tweets to fetch and a variable to check if the account being 
+	accessed is the base user or not. The "is_follower" boolean variable is a 
+	work-around to prevent infinite recursion when the friends_list methos is called.
+	"""
 	def __init__(self, username, count, is_follower=False):
 		self.rawUser = api.get_user(username)
 		self.rawTimeline = [Tweet(tweet) for tweet in api.user_timeline(username, count=count)]
@@ -29,8 +35,11 @@ class TwitterUser(object):
 	def _get_friends(self, friends_ids, count=1):
 		return [TwitterUser(friend_id, count, True) for friend_id in friends_ids]
 
-
 class Tweet(object):
+	"""This class contains the attributes for a tweet object.
+	This includes the text itself, an id, the location where the tweet was posted and time.
+	Also, there are methods for retrieving the hashtags and users mentioned in the tweet
+	"""
 	def __init__(self, tweet):
 		self.text = tweet.text
 		self.id = tweet.id
