@@ -7,7 +7,6 @@ class Config(object):
     """General config."""
 
     EXTENSIONS = [
-        'webfest.extensions.assets',
         'webfest.extensions.cache',
         'webfest.extensions.collect',
         'webfest.extensions.debug',

@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+  position: relative;
+}
+.home{
+  background-color: #2959C9;
+  position: relative;
+}
+
+.home-middle .jumbo {
+  margin:0 auto;
+  position:absolute;
+  left: 0;
+  right: 0;
+  top:50%;
+}

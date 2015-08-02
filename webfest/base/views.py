@@ -21,11 +21,11 @@ def index():
 @blueprint.route('/analyze/twitter/<username>')
 def analyze_twitter(username):
     """Analyze waiting twitter."""
-    return username
+    return render_template('twitter_loading.html', username=username)
 
 
 @blueprint.route('/analyze/twitter/<username>/get')
-def analyze_twitter(username):
+def get_twitter(username):
     """Analyze get twitter."""
     return username
 
