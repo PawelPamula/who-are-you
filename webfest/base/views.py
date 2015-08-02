@@ -83,6 +83,7 @@ def authorized():
     session['linkedin_token'] = (resp['access_token'], '')
     return redirect(url_for('base.analyze_linkedin'))
 
+
 @blueprint.route('/vis')
 def vis():
     img = wordcloud_generator.generate()
