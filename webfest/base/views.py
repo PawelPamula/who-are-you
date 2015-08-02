@@ -8,6 +8,7 @@ from flask_login import logout_user, login_user, current_user
 from webfest.modules.linkedin import linkedin
 from webfest.modules.twitter import TwitterUser, tweets2tags
 from visualization import wordcloud_generator
+import cStringIO
 
 blueprint = Blueprint(
     'base', __name__, template_folder='templates', static_folder='static'
@@ -44,8 +45,10 @@ def get_scrapped_tweets(username):
     results = tweets2tags(tweets, hastags)
 
     img = wordcloud_generator.generate(results)
-    img.save('webfest/base/cloud.png', 'PNG')
-    return send_file('cloud.png', mimetype="image/png")
+    image_buffer = cStringIO.StringIO()
+    img.save(image_buffer, format='PNG')
+    return base64.b64encode(image_buffer.getvalue())
+    #return send_file('cloud.png', mimetype="image/png")
 
 @blueprint.route('/analyze/linkedin')
 def analyze_linkedin():
