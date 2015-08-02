@@ -1,16 +1,57 @@
 html, body {
   height: 100%;
   position: relative;
+  border-radius: 0px!important;
 }
+
+input {
+  border-radius: 0px!important;
+}
+
 .home{
-  background-color: #2959C9;
+  background-color: #22A7F0;
   position: relative;
+  -webkit-transition: all 3s ease-in-out;
+  -moz-transition: all 3s ease-in-out;
+  -o-transition: all 3s ease-in-out;
+  -ms-transition: all 3s ease-in-out;
+  transition: all 3s ease-in-out;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Roboto', sans-serif;
+}
+
+.twitter-username {
+  margin-top: 30px;
+}
+
+.home-who-are-you{
+  font-size: 50px;
+  color: #fff;
+  font-weight: 300;
 }
 
 .home-middle .jumbo {
-  margin:0 auto;
-  position:absolute;
-  left: 0;
-  right: 0;
-  top:50%;
+  margin-top: 20%;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.home-top .jumbo {
+  margin-top: 0;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.home-loading {
+  color: #fff;
+  margin-top: 20%;
+  font-size: 50px;
 }
