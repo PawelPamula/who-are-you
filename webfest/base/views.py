@@ -50,6 +50,7 @@ def get_scrapped_tweets(username):
     return base64.b64encode(image_buffer.getvalue())
     #return send_file('cloud.png', mimetype="image/png")
 
+
 @blueprint.route('/analyze/linkedin')
 def analyze_linkedin():
     """Analyze waiting time linkedin."""

@@ -11,6 +11,18 @@ $(document).ready(function(){
     $home.removeClass('home-middle');
     $home.addClass('home-top');
     $load.fadeIn();
+    $.ajax({
+      url: '/analyze/twitter/'+username+'/scrapped'
+    })
+    .done(function(item){
+      $('.img-result').attr('src', item);
+    })
+    .error(function(){
+
+    })
+    .always(function(){
+
+    });
   });
 
   function getHeight() {
