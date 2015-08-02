@@ -47,8 +47,8 @@ def get_scrapped_tweets(username):
     img = wordcloud_generator.generate(results)
     image_buffer = cStringIO.StringIO()
     img.save(image_buffer, format='PNG')
-    return base64.b64encode(image_buffer.getvalue())
-    #return send_file('cloud.png', mimetype="image/png")
+    #return base64.b64encode(image_buffer.getvalue())
+    return send_file('cloud.png', mimetype="image/png")
 
 
 @blueprint.route('/analyze/linkedin')

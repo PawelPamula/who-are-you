@@ -11,18 +11,11 @@ $(document).ready(function(){
     $home.removeClass('home-middle');
     $home.addClass('home-top');
     $load.fadeIn();
-    $.ajax({
-      url: '/analyze/twitter/'+username+'/scrapped'
-    })
-    .done(function(item){
-      $('.img-result').attr('src', item);
-    })
-    .error(function(){
-
-    })
-    .always(function(){
-
-    });
+    var url = '/analyze/twitter/'+username+'/scrapped';
+    $("<img/>")
+      .on('load', function() { $load.fadeOut(); })
+      .on('error', function() { console.log("error loading image"); })
+      .attr("src", url).appendTo('.home-result');
   });
 
   function getHeight() {

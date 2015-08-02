@@ -20,7 +20,6 @@ def generate(words):
   Words are supposed to be a list of tuples [(word, weight)]
   """
 
-  words = [str(word).lower() for words]
   words_dict = dict(words)
   words = " ".join(words_dict.keys())
 
