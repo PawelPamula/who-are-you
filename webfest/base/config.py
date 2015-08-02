@@ -40,7 +40,7 @@ class DevConfig(Config):
 
     """Dev config."""
 
-    DEBUG = False
+    DEBUG = True
     ASSETS_DEBUG = True
     SECRET_KEY = os.environ.get('SECRET_KEY', os.urandom(24))
 

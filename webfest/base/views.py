@@ -6,7 +6,7 @@ from flask import (
 )
 from flask_login import logout_user, login_user, current_user
 from webfest.modules.linkedin import linkedin
-from webfest.modules.twitter import TwitterUser
+from webfest.modules.twitter import TwitterUser, tweets2tags
 from visualization import wordcloud_generator
 
 blueprint = Blueprint(
@@ -41,7 +41,8 @@ def get_scrapped_tweets(username):
         raw.append(text)
     tweets = raw
     hastags = [' '.join(tweet.hashtags) for tweet in twuser.tweets]
-    return tweets, hastags
+    results = tweets2tags(tweets, hastags)
+    return str(results)
 
 
 @blueprint.route('/analyze/linkedin')
