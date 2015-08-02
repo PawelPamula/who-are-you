@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   position: relative;
   border-radius: 0px!important;
+  background-color: #36394c;
 }
 
 input {
@@ -54,4 +55,8 @@ h1, h2, h3, h4, h5, h6{
   color: #fff;
   margin-top: 20%;
   font-size: 50px;
+}
+
+.home-result {
+  margin-top: 0;
 }

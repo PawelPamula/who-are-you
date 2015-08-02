@@ -14,7 +14,7 @@ blueprint = Blueprint(
     'base', __name__, template_folder='templates', static_folder='static'
 )
 
-MAX_TWEETS = 1000
+MAX_TWEETS = 300
 
 
 @blueprint.route('/')
@@ -46,9 +46,9 @@ def get_scrapped_tweets(username):
 
     img = wordcloud_generator.generate(results)
     image_buffer = cStringIO.StringIO()
-    img.save(image_buffer, format='PNG')
+    img.save('cloud.png', format='PNG')
     #return base64.b64encode(image_buffer.getvalue())
-    return send_file('cloud.png', mimetype="image/png")
+    return send_file('../../cloud.png', mimetype="image/png")
 
 
 @blueprint.route('/analyze/linkedin')

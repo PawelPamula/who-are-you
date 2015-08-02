@@ -2,6 +2,7 @@ from scipy.misc import imread
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 from functools import partial
+from PIL import ImageColor
 
 tedmask = imread('./visualization/tedxbw.png', flatten=True)
 
@@ -10,10 +11,10 @@ def color_func(word=None, font_size=None, position=None,
 
     # val = max(0, min(255, font_size * 6 - 30))
     try:
-      val = dictionary[word] * 42 - 50
+      val = max(0, min(255, dictionary[word] * 42 - 50))
     except KeyError:
       val = 100
-    return "rgb(%d, %d, %d)" % (val, 0, 0)
+    return "rgb(%d, %d, %d)" % (255, 255 - val, 255 - val)
 
 def generate(words):
   """
@@ -24,7 +25,7 @@ def generate(words):
   words = " ".join(words_dict.keys())
 
   wordcloud = WordCloud(stopwords=STOPWORDS,
-                        background_color='white',
+                        background_color=ImageColor.getcolor('#36394c', 'RGB'),
                         width=400,
                         height=400,
                         scale=3,
@@ -33,10 +34,5 @@ def generate(words):
 
   img = wordcloud.to_image()
   pixdata = img.load()
-
-  for y in xrange(img.size[1]):
-      for x in xrange(img.size[0]):
-          if pixdata[x, y] == (255, 255, 255, 255):
-              pixdata[x, y] = (255, 255, 255, 0)
 
   return img

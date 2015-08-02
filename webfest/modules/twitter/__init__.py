@@ -9,10 +9,11 @@ from numpy import arange
 import nltk
 from nltk import word_tokenize
 
-consumer_key = "bBuhDHozTBgDfl51Zo28mSsdV"
-consumer_secret = "Pk1zZg5XT3MqnNHUecuQZffBgfBuRnqeXbEAOrMY3TCyH7V9m9"
-access_token = "3398529563-5Si4sjrY7ADW6KYxQEvjWy7baWM5iuGNAlJEY2F"
-access_token_secret = "crdN41t7KSr4I9nZyGjT7mrO2bAzDPc8ixIw8XDxYK01c"
+consumer_key = "8mKBl6nwbtS6x1TSx4dTtDkII"
+consumer_secret = "3QaNrMQuo4iCAmreULcozhHKIq3tNZm4ODRYLguuTkibgCViMx"
+access_token = "3400051325-NhjNdftHlObWJgWoQznebzsZq1FY3grCgbTqaxQ"
+access_token_secret = "HNtzxvxo99m8EVrbUegMRi2pDs3pILWUw576enLgJRLoM"
+
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
