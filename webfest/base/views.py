@@ -2,11 +2,12 @@
 
 from flask import (
     Blueprint, render_template, url_for, redirect, flash,
-    session, request, jsonify
+    session, request, jsonify, send_file
 )
 from flask_login import logout_user, login_user, current_user
 from webfest.modules.linkedin import linkedin
 from webfest.modules.twitter import TwitterUser
+from visualization import wordcloud_generator
 
 blueprint = Blueprint(
     'base', __name__, template_folder='templates', static_folder='static'
@@ -93,3 +94,9 @@ def authorized():
         )
     session['linkedin_token'] = (resp['access_token'], '')
     return redirect(url_for('base.analyze_linkedin'))
+
+@blueprint.route('/vis')
+def vis():
+    img = wordcloud_generator.generate()
+    img.save('webfest/base/cloud.png', 'PNG')
+    return send_file('cloud.png', mimetype="image/png")
