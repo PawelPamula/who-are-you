@@ -12,6 +12,8 @@ blueprint = Blueprint(
     'base', __name__, template_folder='templates', static_folder='static'
 )
 
+MAX_TWEETS = 1000
+
 
 @blueprint.route('/')
 def index():
@@ -24,11 +26,14 @@ def analyze_twitter(username):
     """Analyze waiting twitter."""
     return render_template('twitter_loading.html', username=username)
 
+@blueprint.route('/analyze/twitter/<username>/raw')
+def get_raw_tweets(username):
+    twuser = TwitterUser(username, MAX_TWEETS)
+    return '\n'.join([tweet.text for tweet in twuser.tweets])
 
-@blueprint.route('/analyze/twitter/<username>/get')
-def get_twitter(username):
-    """Analyze get twitter."""
-    twuser = TwitterUser(username, 1000)
+@blueprint.route('/analyze/twitter/<username>/scrapped')
+def get_scrapped_tweets(username):
+    twuser = TwitterUser(username, MAX_TWEETS)
     #return '\n'.join([tweet.text for tweet in twuser.tweets])
     raw = ''
     for tweet in twuser.tweets:
@@ -39,6 +44,16 @@ def get_twitter(username):
             text = text.replace('@'+referral, '')
         raw += text + '\n'
     return raw
+
+@blueprint.route('/analyze/twitter/<username>/hashtags')
+def get_tweets_hashtags(username):
+    twuser = TwitterUser(username, MAX_TWEETS)
+    return '\n'.join([' '.join(tweet.hashtags) for tweet in twuser.tweets])
+
+@blueprint.route('/analyze/twitter/<username>/referrals')
+def get_tweets_referrals(username):
+    twuser = TwitterUser(username, MAX_TWEETS)
+    return '\n'.join([' '.join(tweet.referrals) for tweet in twuser.tweets])
 
 @blueprint.route('/analyze/linkedin')
 def analyze_linkedin():
