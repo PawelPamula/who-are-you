@@ -6,6 +6,7 @@ from flask import (
 )
 from flask_login import logout_user, login_user, current_user
 from webfest.modules.linkedin import linkedin
+from webfest.modules.twitter import TwitterUser
 
 blueprint = Blueprint(
     'base', __name__, template_folder='templates', static_folder='static'
@@ -27,8 +28,17 @@ def analyze_twitter(username):
 @blueprint.route('/analyze/twitter/<username>/get')
 def get_twitter(username):
     """Analyze get twitter."""
-    return username
-
+    twuser = TwitterUser(username, 1000)
+    #return '\n'.join([tweet.text for tweet in twuser.tweets])
+    raw = ''
+    for tweet in twuser.tweets:
+        text = tweet.text
+        for hashtag in tweet.hashtags:
+            text = text.replace('#'+hashtag, '')
+        for referral in tweet.referrals:
+            text = text.replace('@'+referral, '')
+        raw += text + '\n'
+    return raw
 
 @blueprint.route('/analyze/linkedin')
 def analyze_linkedin():
