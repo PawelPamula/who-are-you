@@ -14,20 +14,42 @@ blueprint = Blueprint(
 
 @blueprint.route('/')
 def index():
+    """Home."""
     return render_template('home.html')
 
 
-@blueprint.route('/data')
-def data():
+@blueprint.route('/analyze/twitter/<username>')
+def analyze_twitter(username):
+    """Analyze waiting twitter."""
+    return username
+
+
+@blueprint.route('/analyze/twitter/<username>/get')
+def analyze_twitter(username):
+    """Analyze get twitter."""
+    return username
+
+
+@blueprint.route('/analyze/linkedin')
+def analyze_linkedin():
+    """Analyze waiting time linkedin."""
     if 'linkedin_token' in session:
-        me = linkedin.get('people/~')
-        return jsonify(me.data)
+        return "I'm the loading"
     return redirect(url_for('base.login'))
+
+
+@blueprint.route('/analyze/linkedin/get')
+def get_linkedin():
+    """Analyze waiting time linkedin."""
+    me = linkedin.get('people/~')
+    return jsonify(me.data)
 
 
 @blueprint.route('/login')
 def login():
-    return linkedin.authorize(callback=url_for('base.authorized', _external=True))
+    return linkedin.authorize(
+        callback=url_for('base.authorized', _external=True)
+    )
 
 
 @blueprint.route('/logout')
@@ -45,4 +67,4 @@ def authorized():
             request.args['error_description']
         )
     session['linkedin_token'] = (resp['access_token'], '')
-    return redirect(url_for('base.data'))
+    return redirect(url_for('base.analyze_linkedin'))
