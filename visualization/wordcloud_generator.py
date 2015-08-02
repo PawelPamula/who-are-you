@@ -2,7 +2,7 @@ from scipy.misc import imread
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 
-tedmask = imread('/home/pawel/workspace/cern-webfest/who-are-you/visualization/tedxbw.png', flatten=True)
+tedmask = imread('./visualization/tedxbw.png', flatten=True)
 
 words = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet felis ipsum, id gravida lorem feugiat congue. Donec leo felis, vulputate nec nulla sed, sodales vehicula magna. Quisque eget ex magna. Morbi gravida nisl sit amet nulla mattis, placerat varius odio vestibulum. Maecenas auctor consectetur neque ac viverra. Mauris in hendrerit risus. Nullam semper metus in tempus venenatis"""
