@@ -3,7 +3,7 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 from functools import partial
 
-tedmask = imread('tedxbw.png', flatten=True)
+tedmask = imread('./visualization/tedxbw.png', flatten=True)
 
 def color_func(word=None, font_size=None, position=None,
                       orientation=None, font_path=None, random_state=None, dictionary=None):
