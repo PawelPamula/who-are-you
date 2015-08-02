@@ -1,3 +1,6 @@
+This was done by Kilian Lieret <Kilian.Lieret@posteo.de>; their team sit in  510-R-27
+---
+
 Use the list files in splitup:
 
 1. Put them in /usr/local/GATE_Developer_8.1/plugins/ANNIE/resources/gazetteer
