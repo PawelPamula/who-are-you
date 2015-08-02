@@ -9,7 +9,10 @@ def color_func(word=None, font_size=None, position=None,
                       orientation=None, font_path=None, random_state=None, dictionary=None):
 
     # val = max(0, min(255, font_size * 6 - 30))
-    val = dictionary[word] * 42 - 50
+    try:
+      val = dictionary[word] * 42 - 50
+    except KeyError:
+      val = 100
     return "rgb(%d, %d, %d)" % (val, 0, 0)
 
 def generate(words):
@@ -17,6 +20,7 @@ def generate(words):
   Words are supposed to be a list of tuples [(word, weight)]
   """
 
+  words = [str(word).lower() for words]
   words_dict = dict(words)
   words = " ".join(words_dict.keys())
 
