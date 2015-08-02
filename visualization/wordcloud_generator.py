@@ -10,7 +10,7 @@ def color_func(word=None, font_size=None, position=None,
 
     # val = max(0, min(255, font_size * 6 - 30))
     val = dictionary[word] * 42 - 50
-    return "rgb(%d, %d, %d)" % (0, 0, val)
+    return "rgb(%d, %d, %d)" % (val, 0, 0)
 
 def generate(words):
   """

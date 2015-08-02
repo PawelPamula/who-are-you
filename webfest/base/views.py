@@ -42,8 +42,10 @@ def get_scrapped_tweets(username):
     tweets = raw
     hastags = [' '.join(tweet.hashtags) for tweet in twuser.tweets]
     results = tweets2tags(tweets, hastags)
-    return str(results)
 
+    img = wordcloud_generator.generate(results)
+    img.save('webfest/base/cloud.png', 'PNG')
+    return send_file('cloud.png', mimetype="image/png")
 
 @blueprint.route('/analyze/linkedin')
 def analyze_linkedin():
