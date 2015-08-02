@@ -8,6 +8,9 @@ $(document).ready(function(){
   $twitterForm.on('submit', function(ev) {
     ev.preventDefault();
     var username = $('.twitter-username').val();
+    $home.removeClass('home-middle');
+    $home.addClass('home-top');
+    $load.fadeIn();
   });
 
   function getHeight() {
@@ -18,10 +21,4 @@ $(document).ready(function(){
 
   $(window).on('resize', getHeight);
   $(window).trigger('resize');
-
-  $('.twitter-username').on('change', function(ev) {
-    $home.removeClass('home-middle');
-    $home.addClass('home-top');
-    $load.fadeIn();
-  });
 });
